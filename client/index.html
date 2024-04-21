@@ -1,1 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Lazeez</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .navbar {
+      background-color: #000;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .footer {
+      background-color: #000;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .menu-container {
+      max-width: 600px;
+      margin: 80px auto 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .menu-category {
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .menu-category h2 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .item-name {
+      font-weight: bold;
+      color: #555;
+      flex: 1;
+    }
+
+    .item-price {
+      color: #777;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">The Lazeez</div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#menu-info">Menu Info</a>
+    </div>
+  </nav>
+    <h1 style="text-align:center">MENU</h1>
+
+  <div class="menu-container" id="menu-container">
+    <!-- Menu items will be dynamically inserted here -->
+  </div>
+
+  <div class="footer">
+    <p>Made by Wasi</p>
+    <p>Address: A36 Arya Nagar, Dehradun</p>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuContainer = document.getElementById("menu-container");
+
+      // Sample JSON data
+      const menuData = {
+  "restaurant": "Spice Delight",
+  "location": "123 Curry Lane, Masala City",
+  "menu": [
+    {
+      "category": "Starter",
+      "items": [
+        {
+          "name": "Samosas",
+          "price": 350
+        },
+        {
+          "name": "Pakoras",
+          "price": 299
+        },
+        {
+          "name": "Paneer Tikka",
+          "price": 499
+        },
+        {
+          "name": "Veg Spring Rolls",
+          "price": 349
+        },
+        {
+          "name": "Aloo Tikki",
+          "price": 249
+        },
+        {
+          "name": "Chilli Chicken",
+          "price": 599
+        },
+        {
+          "name": "Onion Bhaji",
+          "price": 199
+        },
+        {
+          "name": "Tandoori Mushrooms",
+          "price": 449
+        },
+        {
+          "name": "Fish Pakora",
+          "price": 599
+        },
+        {
+          "name": "Chicken 65",
+          "price": 499
+        },
+        {
+          "name": "Masala Vada",
+          "price": 299
+        },
+        {
+          "name": "Egg Pakora",
+          "price": 349
+        },
+        {
+          "name": "Crispy Corn",
+          "price": 249
+        },
+        {
+          "name": "Chana Chaat",
+          "price": 199
+        },
+        {
+          "name": "Mushroom 65",
+          "price": 399
+        },
+        {
+          "name": "Baby Corn Manchurian",
+          "price": 449
+        }
+      ]
+    },
+    {
+      "category": "Main Course",
+      "items": [
+        {
+          "name": "Butter Chicken",
+          "price": 899
+        },
+        {
+          "name": "Palak Paneer",
+          "price": 749
+        },
+        {
+          "name": "Chicken Biryani",
+          "price": 1099
+        },
+        {
+          "name": "Dal Makhani",
+          "price": 599
+        },
+        {
+          "name": "Prawn Curry",
+          "price": 1299
+        },
+        {
+          "name": "Egg Curry",
+          "price": 449
+        },
+        {
+          "name": "Lamb Rogan Josh",
+          "price": 1199
+        },
+        {
+          "name": "Aloo Gobi",
+          "price": 349
+        },
+        {
+          "name": "Chana Masala",
+          "price": 349
+        },
+        {
+          "name": "Matar Paneer",
+          "price": 649
+        },
+        {
+          "name": "Fish Tikka Masala",
+          "price": 1099
+        },
+        {
+          "name": "Keema Naan",
+          "price": 199
+        },
+        {
+          "name": "Vegetable Biryani",
+          "price": 799
+        },
+        {
+          "name": "Tandoori Chicken",
+          "price": 799
+        },
+        {
+          "name": "Kadai Chicken",
+          "price": 849
+        },
+        {
+          "name": "Mixed Veg Curry",
+          "price": 549
+        },
+        {
+          "name": "Lemon Rice",
+          "price": 349
+        },
+        {
+          "name": "Paneer Butter Masala",
+          "price": 649
+        },
+        {
+          "name": "Chicken Lollipop",
+          "price": 599
+        },
+        {
+          "name": "Aloo Paratha",
+          "price": 249
+        },
+        {
+          "name": "Jeera Rice",
+          "price": 249
+        },
+        {
+          "name": "Mutton Curry",
+          "price": 1199
+        },
+        {
+          "name": "Malai Kofta",
+          "price": 599
+        },
+        {
+          "name": "Chicken Korma",
+          "price": 749
+        },
+        {
+          "name": "Gobi Manchurian",
+          "price": 449
+        },
+        {
+          "name": "Veg Pulao",
+          "price": 449
+        },
+        {
+          "name": "Chilli Garlic Noodles",
+          "price": 349
+        },
+        {
+          "name": "Chicken Fried Rice",
+          "price": 399
+        },
+        {
+          "name": "Dal Tadka",
+          "price": 299
+        },
+        {
+          "name": "Lobster Curry",
+          "price": 1699
+        },
+        {
+          "name": "Prawns Biryani",
+          "price": 1399
+        },
+        {
+          "name": "Chicken Shawarma",
+          "price": 349
+        },
+        {
+          "name": "Aloo Matar",
+          "price": 299
+        },
+        {
+          "name": "Beef Biryani",
+          "price": 1199
+        },
+        {
+          "name": "Chicken Malai Tikka",
+          "price": 699
+        },
+        {
+          "name": "Veg Kolhapuri",
+          "price": 399
+        },
+        {
+          "name": "Prawn Fry",
+          "price": 1299
+        },
+        {
+          "name": "Ghee Rice",
+          "price": 299
+        }
+      ]
+    },
+    {
+      "category": "Dessert",
+      "items": [
+        {
+          "name": "Gulab Jamun",
+          "price": 199
+        },
+        {
+          "name": "Rasgulla",
+          "price": 149
+        },
+        {
+          "name": "Kheer",
+          "price": 249
+        },
+        {
+          "name": "Rasmalai",
+          "price": 199
+        },
+        {
+          "name": "Ice Cream (Vanilla)",
+          "price": 99
+        },
+        {
+          "name": "Gajar Halwa",
+          "price": 299
+        },
+        {
+          "name": "Chocolate Cake",
+          "price": 399
+        },
+        {
+          "name": "Fruit Salad",
+          "price": 199
+        },
+        {
+          "name": "Rabri",
+          "price": 299
+        },
+        {
+          "name": "Badam Halwa",
+          "price": 399
+        },
+        {
+          "name": "Mango Ice Cream",
+          "price": 149
+        },
+        {
+          "name": "Jalebi",
+          "price": 199
+        },
+        {
+          "name": "Kulfi",
+          "price": 249
+        },
+        {
+          "name": "Coconut Ladoo",
+          "price": 99
+        },
+        {
+          "name": "Pista Barfi",
+          "price": 349
+        },
+        {
+          "name": "Fruit Custard",
+          "price": 199
+        }
+      ]
+    },
+    {
+      "category": "Chinese",
+      "items": [
+        {
+          "name": "Szechuan Chicken",
+          "price": 699
+        },
+        {
+          "name": "Vegetable Manchurian",
+          "price": 449
+        },
+        {
+          "name": "Hakka Noodles (Veg)",
+          "price": 349
+        },
+        {
+          "name": "Chilli Paneer",
+          "price": 599
+        },
+        {
+          "name": "Sweet and Sour Fish",
+          "price": 899
+        },
+        {
+          "name": "Chow Mein (Chicken)",
+          "price": 599
+        },
+        {
+          "name": "Fried Rice (Egg)",
+          "price": 299
+        },
+        {
+          "name": "Spring Rolls",
+          "price": 249
+        },
+        {
+          "name": "Gobi Manchurian",
+          "price": 449
+        },
+        {
+          "name": "Schezwan Fried Rice",
+          "price": 399
+        },
+        {
+          "name": "Dragon Chicken",
+          "price": 699
+        },
+        {
+          "name": "Prawn Manchurian",
+          "price": 799
+        },
+        {
+          "name": "Chilli Garlic Noodles",
+          "price": 349
+        },
+        {
+          "name": "Paneer Manchurian",
+          "price": 549
+        },
+        {
+          "name": "Singapore Noodles",
+          "price": 449
+        },
+        {
+          "name": "Veg Momos",
+          "price": 199
+        }
+      ]
+    },
+    {
+      "category": "Mughlai",
+      "items": [
+        {
+          "name": "Chicken Tikka",
+          "price": 799
+        },
+        {
+          "name": "Seekh Kebab",
+          "price": 649
+        },
+        {
+          "name": "Mutton Biryani",
+          "price": 1199
+        },
+        {
+          "name": "Mughlai Paratha",
+          "price": 249
+        },
+        {
+          "name": "Galouti Kebab",
+          "price": 899
+        },
+        {
+          "name": "Murgh Musallam",
+          "price": 999
+        },
+        {
+          "name": "Shahi Paneer",
+          "price": 649
+        },
+        {
+          "name": "Nihari Gosht",
+          "price": 1299
+        },
+        {
+          "name": "Keema Naan",
+          "price": 199
+        },
+        {
+          "name": "Butter Naan",
+          "price": 149
+        },
+        {
+          "name": "Mutton Korma",
+          "price": 1099
+        },
+        {
+          "name": "Chicken Changezi",
+          "price": 849
+        },
+        {
+          "name": "Peshawari Naan",
+          "price": 249
+        },
+        {
+          "name": "Murgh Do Pyaza",
+          "price": 799
+        },
+        {
+          "name": "Chicken Malai Kebab",
+          "price": 699
+        },
+        {
+          "name": "Mutton Rogan Josh",
+          "price": 1199
+        },
+        {
+          "name": "Mutton Kofta",
+          "price": 899
+        },
+        {
+          "name": "Chicken Afghani",
+          "price": 749
+        },
+        {
+          "name": "Mutton Dum Biryani",
+          "price": 1399
+        },
+        {
+          "name": "Shahi Tukda",
+          "price": 199
+        },
+        {
+          "name": "Mutton Rezala",
+          "price": 1199
+        },
+        {
+          "name": "Chicken Handi",
+          "price": 849
+        },
+        {
+          "name": "Lahori Kebab",
+          "price": 699
+        },
+        {
+          "name": "Paneer Tikka Masala",
+          "price": 599
+        },
+        {
+          "name": "Mutton Chilli Masala",
+          "price": 1199
+        },
+        {
+          "name": "Chicken Kali Mirch",
+          "price": 799
+        },
+        {
+          "name": "Bhuna Gosht",
+          "price": 999
+        },
+        {
+          "name": "Kadai Paneer",
+          "price": 549
+        },
+        {
+          "name": "Mutton Stew",
+          "price": 1199
+        },
+        {
+          "name": "Chicken Rezala",
+          "price": 799
+        },
+        {
+          "name": "Nawabi Chicken",
+          "price": 899
+        },
+        {
+          "name": "Mutton Nihari",
+          "price": 1299
+        },
+        {
+          "name": "Chicken Hariyali",
+          "price": 699
+        },
+        {
+          "name": "Murg Kali Mirch",
+          "price": 799
+        },
+        {
+          "name": "Chicken Afghani",
+          "price": 849
+        },
+        {
+          "name": "Mutton Rogan Josh",
+          "price": 1199
+        }
+      ]
+    }
+  ]
+}
+
+      // Function to create menu items
+      function createMenuItem(name, price) {
+        const menuItem = document.createElement("div");
+        menuItem.classList.add("menu-item");
+
+        const itemName = document.createElement("span");
+        itemName.classList.add("item-name");
+        itemName.textContent = name;
+
+        const itemPrice = document.createElement("span");
+        itemPrice.classList.add("item-price");
+        itemPrice.textContent = "Rs " + price;
+
+        menuItem.appendChild(itemName);
+        menuItem.appendChild(itemPrice);
+
+        return menuItem;
+      }
+
+      // Function to create menu categories
+      function createMenuCategory(category, items) {
+        const menuCategory = document.createElement("div");
+        menuCategory.classList.add("menu-category");
+
+        const categoryTitle = document.createElement("h2");
+        categoryTitle.textContent = category;
+        menuCategory.appendChild(categoryTitle);
+
+        items.forEach(item => {
+          const menuItem = createMenuItem(item.name, item.price);
+          menuCategory.appendChild(menuItem);
+        });
+
+        return menuCategory;
+      }
+
+      // Display menu on the webpage
+      menuData.menu.forEach(category => {
+        const menuCategory = createMenuCategory(category.category, category.items);
+        menuContainer.appendChild(menuCategory);
+      });
+    });
+  </script>
+</body>
+</html>
 
