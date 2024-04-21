@@ -1,6 +1,6 @@
 # Resturant-Menu
 This is for a College Assignment.
-
+Screenshot of menu
 ![image](https://github.com/reallywasi/Resturant-Menu/assets/118682540/90ca3564-e629-46de-9137-8b8349cc39ed)
 ![image](https://github.com/reallywasi/Resturant-Menu/assets/118682540/692a78bd-becb-4d0b-92fe-2d5330cd7556)
 ![image](https://github.com/reallywasi/Resturant-Menu/assets/118682540/a37a0d32-a171-4526-b357-0d7825c4fdf4)
